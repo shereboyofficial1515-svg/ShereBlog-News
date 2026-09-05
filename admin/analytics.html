@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Analytics — SHEREBLOG NEWS Admin</title>
+  <meta name="robots" content="noindex" />
+  <link rel="stylesheet" href="/admin/css/admin.css" />
+  <style>
+    .bar-row { display: flex; align-items: center; gap: 0.7rem; padding: 0.4rem 0; font-size: 0.84rem; }
+    .bar-label { width: 130px; flex-shrink: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .bar-track { flex: 1; background: var(--a-bg); border-radius: 4px; height: 10px; overflow: hidden; }
+    .bar-fill { height: 100%; background: var(--a-red); border-radius: 4px; }
+    .bar-value { width: 50px; text-align: right; color: var(--a-slate); flex-shrink: 0; }
+  </style>
+</head>
+<body>
+  <div class="admin-shell">
+    <aside class="admin-sidebar" id="admin-sidebar-mount"></aside>
+    <div class="admin-main">
+      <header class="admin-topbar" id="admin-topbar-mount"></header>
+      <div class="admin-content">
+
+        <div class="a-stat-grid" id="stat-grid" style="grid-template-columns: repeat(2, 1fr);"></div>
+
+        <div style="display:grid; grid-template-columns: 1.4fr 1fr; gap:1.2rem;">
+          <div class="a-card" style="padding:1.3rem;">
+            <h3 style="margin:0 0 1rem; font-size:1rem;">Views, last 14 days</h3>
+            <div id="trend-chart"></div>
+          </div>
+          <div class="a-card" style="padding:1.3rem;">
+            <h3 style="margin:0 0 1rem; font-size:1rem;">Views by Category</h3>
+            <div id="category-chart"></div>
+          </div>
+        </div>
+
+        <div class="a-card" style="padding:1.3rem; margin-top:1.2rem;">
+          <h3 style="margin:0 0 1rem; font-size:1rem;">Top Articles</h3>
+          <div id="top-articles-list"></div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <script src="/admin/js/admin-api.js"></script>
+  <script src="/admin/js/admin-utils.js"></script>
+  <script src="/admin/js/auth-guard.js"></script>
+  <script src="/admin/js/admin-layout.js"></script>
+  <script src="/admin/js/analytics.js"></script>
+</body>
+</html>

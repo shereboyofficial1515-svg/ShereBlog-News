@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Categories — SHEREBLOG NEWS Admin</title>
+  <meta name="robots" content="noindex" />
+  <link rel="stylesheet" href="/admin/css/admin.css" />
+</head>
+<body>
+  <div class="admin-shell">
+    <aside class="admin-sidebar" id="admin-sidebar-mount"></aside>
+    <div class="admin-main">
+      <header class="admin-topbar" id="admin-topbar-mount"></header>
+      <div class="admin-content">
+
+        <div class="a-toolbar">
+          <div style="flex:1;"></div>
+          <button class="a-btn a-btn-primary" id="new-category-btn">+ New Category</button>
+        </div>
+
+        <div class="a-card">
+          <div class="a-table-wrap">
+            <table class="a-table">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Slug</th>
+                  <th>Description</th>
+                  <th>Status</th>
+                  <th>Sort</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody id="categories-table-body">
+                <tr class="a-skeleton-row"><td colspan="6"><div class="a-skeleton"></div></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="a-modal-backdrop" id="category-modal" style="display:none;">
+    <div class="a-modal">
+      <h3 id="category-modal-title">New Category</h3>
+      <form id="category-form">
+        <div class="a-field">
+          <label class="a-label" for="cat-name">Name</label>
+          <input class="a-input" type="text" id="cat-name" required maxlength="100" />
+        </div>
+        <div class="a-field">
+          <label class="a-label" for="cat-description">Description</label>
+          <textarea class="a-textarea" id="cat-description" rows="2" maxlength="500"></textarea>
+        </div>
+        <div class="a-field">
+          <label class="a-label" for="cat-image">Image URL</label>
+          <input class="a-input" type="url" id="cat-image" />
+        </div>
+        <div class="a-field">
+          <label class="a-label" for="cat-sort">Sort Order</label>
+          <input class="a-input" type="number" id="cat-sort" value="0" min="0" />
+        </div>
+        <div class="a-field" style="display:flex; align-items:center; gap:8px;">
+          <input type="checkbox" id="cat-active" checked />
+          <label class="a-label" for="cat-active" style="margin:0;">Active (visible on the public site)</label>
+        </div>
+        <div class="a-modal-actions">
+          <button type="button" class="a-btn a-btn-ghost" id="category-modal-cancel">Cancel</button>
+          <button type="submit" class="a-btn a-btn-primary" id="category-modal-save">Save Category</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="a-modal-backdrop" id="delete-modal" style="display:none;">
+    <div class="a-modal">
+      <h3>Delete category</h3>
+      <p id="delete-modal-body"></p>
+      <div class="a-field" id="reassign-field" style="display:none;">
+        <label class="a-label" for="reassign-select">Reassign its articles to</label>
+        <select class="a-select" id="reassign-select"></select>
+      </div>
+      <div class="a-modal-actions">
+        <button class="a-btn a-btn-ghost" id="delete-modal-cancel">Cancel</button>
+        <button class="a-btn a-btn-danger" id="delete-modal-confirm">Delete</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="/admin/js/admin-api.js"></script>
+  <script src="/admin/js/admin-utils.js"></script>
+  <script src="/admin/js/auth-guard.js"></script>
+  <script src="/admin/js/admin-layout.js"></script>
+  <script src="/admin/js/categories.js"></script>
+</body>
+</html>

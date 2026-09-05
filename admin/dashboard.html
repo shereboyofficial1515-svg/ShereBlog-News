@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard — SHEREBLOG NEWS Admin</title>
+  <meta name="robots" content="noindex" />
+  <link rel="stylesheet" href="/admin/css/admin.css" />
+</head>
+<body>
+  <div class="admin-shell">
+    <aside class="admin-sidebar" id="admin-sidebar-mount"></aside>
+    <div class="admin-main">
+      <header class="admin-topbar" id="admin-topbar-mount"></header>
+      <div class="admin-content">
+        <div class="a-stat-grid" id="stat-grid"></div>
+
+        <div style="display:grid; grid-template-columns: 1.4fr 1fr; gap: 1.2rem;" id="dashboard-panels">
+          <div class="a-card" style="padding:1.3rem;">
+            <h3 style="margin:0 0 1rem; font-size:1rem;">Recent Activity</h3>
+            <div id="activity-list"></div>
+          </div>
+          <div class="a-card" style="padding:1.3rem;">
+            <h3 style="margin:0 0 1rem; font-size:1rem;">Most-Read Articles</h3>
+            <div id="most-read-list"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="/admin/js/admin-api.js"></script>
+  <script src="/admin/js/admin-utils.js"></script>
+  <script src="/admin/js/auth-guard.js"></script>
+  <script src="/admin/js/admin-layout.js"></script>
+  <script src="/admin/js/dashboard.js"></script>
+</body>
+</html>

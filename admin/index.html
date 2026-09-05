@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Login — SHEREBLOG NEWS</title>
+  <meta name="robots" content="noindex" />
+  <link rel="stylesheet" href="/admin/css/admin.css" />
+  <style>
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      background: var(--a-ink);
+    }
+
+    .login-card {
+      width: 100%;
+      max-width: 380px;
+      padding: 2rem;
+    }
+
+    .login-brand {
+      text-align: center;
+      margin-bottom: 1.6rem;
+      font-family: var(--a-mono);
+      font-weight: 700;
+      letter-spacing: 0.04em;
+    }
+
+    .login-brand .dot {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--a-red);
+      margin-right: 6px;
+    }
+
+    .login-error {
+      background: #fdecea;
+      color: var(--a-red-dark);
+      padding: 0.6rem 0.8rem;
+      border-radius: var(--a-radius-sm);
+      font-size: 0.82rem;
+      margin-bottom: 1rem;
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="a-card login-card">
+    <div class="login-brand"><span class="dot"></span>SHEREBLOG NEWS ADMIN</div>
+    <div class="login-error" id="login-error"></div>
+    <form id="login-form">
+      <div class="a-field">
+        <label class="a-label" for="email">Email</label>
+        <input class="a-input" type="email" id="email" name="email" required autofocus />
+      </div>
+      <div class="a-field">
+        <label class="a-label" for="password">Password</label>
+        <input class="a-input" type="password" id="password" name="password" required />
+      </div>
+      <button type="submit" class="a-btn a-btn-primary" style="width:100%;" id="login-btn">Log In</button>
+    </form>
+  </div>
+
+  <script src="/admin/js/admin-api.js"></script>
+  <script src="/admin/js/admin-utils.js"></script>
+  <script src="/admin/js/login.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title id="page-title">New Post — SHEREBLOG NEWS Admin</title>
+  <meta name="robots" content="noindex" />
+  <link rel="stylesheet" href="/admin/css/admin.css" />
+  <link rel="stylesheet" href="/admin/css/editor.css" />
+</head>
+<body>
+  <div class="admin-shell">
+    <aside class="admin-sidebar" id="admin-sidebar-mount"></aside>
+    <div class="admin-main">
+      <header class="admin-topbar" id="admin-topbar-mount"></header>
+      <div class="admin-content">
+        <div class="editor-layout">
+
+          <div class="editor-main">
+            <input type="text" class="editor-title-input" id="title-input" placeholder="Article title" />
+            <input type="text" class="editor-subtitle-input" id="subtitle-input" placeholder="Subtitle / deck (optional)" />
+
+            <div class="editor-mode-tabs">
+              <button type="button" class="active" data-mode="write" id="tab-write">Write</button>
+              <button type="button" data-mode="preview" id="tab-preview">Preview</button>
+            </div>
+
+            <div id="write-pane">
+              <div class="editor-toolbar" id="editor-toolbar">
+                <select id="block-format-select" title="Paragraph style">
+                  <option value="p">Paragraph</option>
+                  <option value="h1">Heading 1</option>
+                  <option value="h2">Heading 2</option>
+                  <option value="h3">Heading 3</option>
+                </select>
+                <span class="editor-toolbar-sep"></span>
+                <button type="button" class="editor-toolbar-btn" data-cmd="bold" title="Bold"><b>B</b></button>
+                <button type="button" class="editor-toolbar-btn" data-cmd="italic" title="Italic"><i>I</i></button>
+                <button type="button" class="editor-toolbar-btn" data-cmd="underline" title="Underline"><u>U</u></button>
+                <button type="button" class="editor-toolbar-btn" data-cmd="strikeThrough" title="Strikethrough"><s>S</s></button>
+                <span class="editor-toolbar-sep"></span>
+                <button type="button" class="editor-toolbar-btn" data-cmd="justifyLeft" title="Align left">⇤</button>
+                <button type="button" class="editor-toolbar-btn" data-cmd="justifyCenter" title="Align center">≡</button>
+                <button type="button" class="editor-toolbar-btn" data-cmd="justifyRight" title="Align right">⇥</button>
+                <span class="editor-toolbar-sep"></span>
+                <button type="button" class="editor-toolbar-btn" data-cmd="insertUnorderedList" title="Bullet list">• —</button>
+                <button type="button" class="editor-toolbar-btn" data-cmd="insertOrderedList" title="Numbered list">1.</button>
+                <button type="button" class="editor-toolbar-btn" data-cmd="formatBlock" data-value="blockquote" title="Blockquote">❝</button>
+                <span class="editor-toolbar-sep"></span>
+                <button type="button" class="editor-toolbar-btn" id="link-btn" title="Insert link">🔗</button>
+                <button type="button" class="editor-toolbar-btn" id="image-url-btn" title="Insert image by URL">🖼</button>
+                <button type="button" class="editor-toolbar-btn" id="image-library-btn" title="Insert image from Media Library">🗂</button>
+                <button type="button" class="editor-toolbar-btn" id="table-btn" title="Insert table">▦</button>
+                <button type="button" class="editor-toolbar-btn" data-cmd="insertHorizontalRule" title="Horizontal rule">—</button>
+                <span class="editor-toolbar-sep"></span>
+                <button type="button" class="editor-toolbar-btn" data-cmd="undo" title="Undo">↺</button>
+                <button type="button" class="editor-toolbar-btn" data-cmd="redo" title="Redo">↻</button>
+              </div>
+              <div class="editor-content-area" id="content-area" contenteditable="true" data-placeholder="Start writing your story..."></div>
+            </div>
+
+            <div id="preview-pane" style="display:none;">
+              <div class="editor-preview-area">
+                <h1 class="preview-title" id="preview-title"></h1>
+                <p class="preview-subtitle" id="preview-subtitle"></p>
+                <div class="preview-meta" id="preview-meta"></div>
+                <div id="preview-image-wrap"></div>
+                <div class="preview-body" id="preview-body"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="editor-sidebar">
+            <div class="a-card editor-panel">
+              <h4>Status &amp; Visibility</h4>
+              <div class="a-field">
+                <label class="a-label" for="status-select">Status</label>
+                <select class="a-select" id="status-select">
+                  <option value="draft">Draft</option>
+                  <option value="pending_review">Pending Review</option>
+                  <option value="scheduled">Scheduled</option>
+                  <option value="published">Published</option>
+                  <option value="archived">Archived</option>
+                </select>
+              </div>
+              <div class="a-field" id="schedule-fields" style="display:none;">
+                <label class="a-label" for="schedule-date">Publish date &amp; time</label>
+                <input class="a-input" type="datetime-local" id="schedule-date" />
+                <p class="a-hint">Uses your browser's local timezone.</p>
+              </div>
+              <div class="status-actions">
+                <button class="a-btn a-btn-ghost" id="save-draft-btn">Save Draft</button>
+                <button class="a-btn a-btn-primary" id="primary-action-btn">Publish</button>
+                <button class="a-btn a-btn-ghost" id="unpublish-btn" style="display:none;">Unpublish</button>
+                <button class="a-btn a-btn-danger" id="trash-btn" style="display:none;">Move to Trash</button>
+              </div>
+              <div class="save-indicator" id="save-indicator"></div>
+            </div>
+
+            <div class="a-card editor-panel">
+              <h4>Article Info</h4>
+              <div class="a-field">
+                <label class="a-label" for="category-select">Category</label>
+                <select class="a-select" id="category-select"></select>
+              </div>
+              <div class="a-field">
+                <label class="a-label" for="tags-input-field">Tags</label>
+                <div class="tags-input-wrap" id="tags-wrap">
+                  <input type="text" id="tags-input-field" placeholder="Add tag, press Enter" />
+                </div>
+              </div>
+              <div class="a-field">
+                <label class="a-label" for="slug-display">Slug</label>
+                <input class="a-input" type="text" id="slug-display" disabled placeholder="Auto-generated from title" />
+              </div>
+            </div>
+
+            <div class="a-card editor-panel">
+              <h4>Featured Image</h4>
+              <div class="a-field">
+                <label class="a-label" for="featured-image-url">Image URL</label>
+                <input class="a-input" type="url" id="featured-image-url" placeholder="https://..." />
+                <button type="button" class="a-btn a-btn-ghost a-btn-sm" id="featured-image-library-btn" style="margin-top:0.5rem; width:100%;">Browse Media Library</button>
+              </div>
+              <div class="a-field">
+                <label class="a-label" for="featured-image-alt">Alt text</label>
+                <input class="a-input" type="text" id="featured-image-alt" />
+              </div>
+              <div class="a-field">
+                <label class="a-label" for="featured-image-caption">Caption</label>
+                <input class="a-input" type="text" id="featured-image-caption" />
+              </div>
+              <img id="featured-image-preview" style="width:100%; border-radius:8px; display:none; margin-top:0.4rem;" />
+            </div>
+
+            <details class="a-card editor-panel editor-collapsible">
+              <summary>SEO Settings</summary>
+              <div class="a-field" style="margin-top:0.8rem;">
+                <label class="a-label" for="seo-title">SEO Title</label>
+                <input class="a-input" type="text" id="seo-title" />
+              </div>
+              <div class="a-field">
+                <label class="a-label" for="seo-description">SEO Description</label>
+                <textarea class="a-textarea" id="seo-description" rows="3"></textarea>
+              </div>
+              <div class="a-field">
+                <label class="a-label" for="seo-keywords">Keywords</label>
+                <input class="a-input" type="text" id="seo-keywords" />
+              </div>
+              <div class="a-field">
+                <label class="a-label" for="canonical-url">Canonical URL</label>
+                <input class="a-input" type="url" id="canonical-url" />
+              </div>
+              <div class="a-field">
+                <label class="a-label" for="excerpt-input">Excerpt</label>
+                <textarea class="a-textarea" id="excerpt-input" rows="2"></textarea>
+              </div>
+              <div class="a-field">
+                <label class="a-label" for="source-input">Source</label>
+                <input class="a-input" type="text" id="source-input" />
+              </div>
+            </details>
+
+            <div class="a-card editor-panel">
+              <h4>Flags</h4>
+              <label style="display:flex; align-items:center; gap:8px; font-size:0.85rem; margin-bottom:0.6rem;">
+                <input type="checkbox" id="is-featured-checkbox" /> Featured story
+              </label>
+              <label style="display:flex; align-items:center; gap:8px; font-size:0.85rem;">
+                <input type="checkbox" id="is-breaking-checkbox" /> Breaking news
+              </label>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="a-modal-backdrop" id="media-picker-modal" style="display:none;">
+    <div class="a-modal" style="max-width:640px; max-height:80vh; overflow-y:auto;">
+      <h3>Choose from Media Library</h3>
+      <div class="a-field"><input class="a-input" type="search" id="media-picker-search" placeholder="Search files..." /></div>
+      <div id="media-picker-grid" style="display:grid; grid-template-columns:repeat(auto-fill, minmax(110px, 1fr)); gap:0.7rem; margin:0.8rem 0;"></div>
+      <div class="a-modal-actions">
+        <button class="a-btn a-btn-ghost" id="media-picker-close">Close</button>
+        <a class="a-btn a-btn-ghost" href="/admin/media.html" target="_blank">Upload New File ↗</a>
+      </div>
+    </div>
+  </div>
+
+  <script src="/admin/js/admin-api.js"></script>
+  <script src="/admin/js/admin-utils.js"></script>
+  <script src="/admin/js/auth-guard.js"></script>
+  <script src="/admin/js/admin-layout.js"></script>
+  <script src="/admin/js/media-picker.js"></script>
+  <script src="/admin/js/post-editor.js"></script>
+</body>
+</html>

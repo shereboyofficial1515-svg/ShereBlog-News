@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SHEREBLOG NEWS — Independent Digital News</title>
+  <meta name="description" content="Breaking news, politics, entertainment, sports, business, technology and world news — reported clearly, published fast." />
+  <meta property="og:title" content="SHEREBLOG NEWS" />
+  <meta property="og:description" content="Independent digital news you can trust." />
+  <meta property="og:type" content="website" />
+  <link rel="canonical" href="/index.html" />
+  <link rel="stylesheet" href="/css/tokens.css" />
+  <link rel="stylesheet" href="/css/layout.css" />
+  <link rel="stylesheet" href="/css/cards.css" />
+</head>
+<body>
+  <div id="site-header-mount"></div>
+
+  <main id="main-content">
+    <section class="section" style="padding-top: var(--space-6);">
+      <div class="container">
+        <div class="section-heading">
+          <h2>Featured Stories</h2>
+        </div>
+        <div class="featured-grid" id="featured-grid">
+          <div class="featured-lead skeleton" style="height:420px;"></div>
+          <div class="featured-secondary">
+            <div class="secondary-card skeleton" style="height:100px;"></div>
+            <div class="secondary-card skeleton" style="height:100px;"></div>
+            <div class="secondary-card skeleton" style="height:100px;"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" style="padding-top:0;">
+      <div class="container" id="newsletter-mount"></div>
+    </section>
+
+    <section class="section" style="padding-top:0;">
+      <div class="container">
+        <div class="section-heading">
+          <h2>Latest News</h2>
+          <a href="/search.html">Browse all →</a>
+        </div>
+        <div class="news-grid" id="latest-grid"></div>
+        <div class="load-more-wrap">
+          <button class="btn btn-ghost" id="load-more-btn">Load More</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="site-footer-mount"></div>
+
+  <script src="/js/utils.js"></script>
+  <script src="/js/api.js"></script>
+  <script src="/js/cards.js"></script>
+  <script src="/js/layout.js"></script>
+  <script src="/js/home.js"></script>
+</body>
+</html>

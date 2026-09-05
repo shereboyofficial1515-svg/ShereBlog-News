@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Users — SHEREBLOG NEWS Admin</title>
+  <meta name="robots" content="noindex" />
+  <link rel="stylesheet" href="/admin/css/admin.css" />
+</head>
+<body>
+  <div class="admin-shell">
+    <aside class="admin-sidebar" id="admin-sidebar-mount"></aside>
+    <div class="admin-main">
+      <header class="admin-topbar" id="admin-topbar-mount"></header>
+      <div class="admin-content">
+
+        <div class="a-toolbar">
+          <div class="a-search-input"><input class="a-input" type="search" id="search-input" placeholder="Search by email..." /></div>
+          <div style="flex:1;"></div>
+          <button class="a-btn a-btn-primary" id="new-user-btn">+ New User</button>
+        </div>
+
+        <div class="a-card">
+          <div class="a-table-wrap">
+            <table class="a-table">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>Role</th>
+                  <th>Status</th>
+                  <th>Last Login</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody id="users-table-body">
+                <tr class="a-skeleton-row"><td colspan="6"><div class="a-skeleton"></div></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="a-modal-backdrop" id="user-modal" style="display:none;">
+    <div class="a-modal">
+      <h3 id="user-modal-title">New User</h3>
+      <form id="user-form">
+        <div class="a-field"><label class="a-label" for="u-name">Full Name</label><input class="a-input" id="u-name" required maxlength="150" /></div>
+        <div class="a-field"><label class="a-label" for="u-email">Email</label><input class="a-input" type="email" id="u-email" required /></div>
+        <div class="a-field" id="u-password-field"><label class="a-label" for="u-password">Password</label><input class="a-input" type="password" id="u-password" minlength="10" /></div>
+        <div class="a-field">
+          <label class="a-label" for="u-role">Role</label>
+          <select class="a-select" id="u-role">
+            <option value="author">Author</option>
+            <option value="editor">Editor</option>
+            <option value="moderator">Moderator</option>
+            <option value="admin">Admin</option>
+            <option value="super_admin">Super Admin</option>
+          </select>
+        </div>
+        <div class="a-field" id="u-status-field" style="display:none;">
+          <label class="a-label" for="u-status">Status</label>
+          <select class="a-select" id="u-status">
+            <option value="active">Active</option>
+            <option value="disabled">Disabled</option>
+          </select>
+        </div>
+        <div class="a-modal-actions">
+          <button type="button" class="a-btn a-btn-ghost" id="user-modal-cancel">Cancel</button>
+          <button type="submit" class="a-btn a-btn-primary" id="user-modal-save">Save User</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="a-modal-backdrop" id="reset-password-modal" style="display:none;">
+    <div class="a-modal">
+      <h3>Reset Password</h3>
+      <p id="reset-password-body"></p>
+      <div class="a-field"><label class="a-label" for="new-password-field">New Password</label><input class="a-input" type="password" id="new-password-field" minlength="10" /></div>
+      <div class="a-modal-actions">
+        <button class="a-btn a-btn-ghost" id="reset-password-cancel">Cancel</button>
+        <button class="a-btn a-btn-primary" id="reset-password-confirm">Reset Password</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="/admin/js/admin-api.js"></script>
+  <script src="/admin/js/admin-utils.js"></script>
+  <script src="/admin/js/auth-guard.js"></script>
+  <script src="/admin/js/admin-layout.js"></script>
+  <script src="/admin/js/users.js"></script>
+</body>
+</html>

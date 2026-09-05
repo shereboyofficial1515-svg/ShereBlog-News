@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Unsubscribe — SHEREBLOG NEWS</title>
+  <meta name="robots" content="noindex" />
+  <link rel="stylesheet" href="/css/tokens.css" />
+  <link rel="stylesheet" href="/css/layout.css" />
+</head>
+
+<body>
+  <div id="site-header-mount"></div>
+  <main id="main-content">
+    <section class="section" style="max-width:440px; margin:0 auto;">
+      <div class="container">
+        <h1 style="font-family:var(--font-display); font-size:1.9rem; margin:0 0 10px;">Unsubscribe</h1>
+        <p style="color:var(--slate); margin:0 0 1.2rem;">Enter your email to stop receiving SHEREBLOG NEWS emails.</p>
+        <form id="unsub-form" style="display:flex; gap:8px;">
+          <input type="email" id="unsub-email" required placeholder="you@example.com"
+            style="flex:1; padding:0.7rem 1rem; border-radius:8px; border:1px solid var(--hairline);" />
+          <button type="submit" class="btn btn-primary">Unsubscribe</button>
+        </form>
+        <p id="unsub-result" style="margin-top:1rem; font-size:0.9rem;"></p>
+      </div>
+    </section>
+  </main>
+  <div id="site-footer-mount"></div>
+
+  <script src="/js/utils.js"></script>
+  <script src="/js/api.js"></script>
+  <script src="/js/layout.js"></script>
+  <script src="/js/unsubscribe.js"></script>
+</body>
+
+</html>

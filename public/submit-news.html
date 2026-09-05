@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Submit News — SHEREBLOG NEWS</title>
+  <meta name="description" content="Have a tip or story? Submit it to the SHEREBLOG NEWS editorial team for review." />
+  <link rel="stylesheet" href="/css/tokens.css" />
+  <link rel="stylesheet" href="/css/layout.css" />
+  <style>
+    .form-wrap { max-width: 680px; margin: 0 auto; }
+    .form-row { margin-bottom: var(--space-4); }
+    .form-row label { display: block; font-weight: 600; font-size: 0.88rem; margin-bottom: 6px; }
+    .form-row .hint { font-size: 0.8rem; color: var(--slate); margin-top: 4px; }
+    .form-row input, .form-row select, .form-row textarea {
+      width: 100%;
+      padding: 0.75rem 0.9rem;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--hairline);
+      background: var(--paper-raised);
+      font-family: inherit;
+      font-size: 0.95rem;
+    }
+    .form-row input:focus, .form-row select:focus, .form-row textarea:focus { border-color: var(--wire-red); }
+    .form-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-4); }
+    .checkbox-row { display: flex; align-items: flex-start; gap: 10px; }
+    .checkbox-row input { width: auto; margin-top: 3px; }
+    .checkbox-row label { font-weight: 400; font-size: 0.85rem; }
+    .form-note {
+      background: var(--brass-light);
+      border-radius: var(--radius-md);
+      padding: var(--space-3) var(--space-4);
+      font-size: 0.85rem;
+      color: var(--ink-soft);
+      margin-bottom: var(--space-5);
+    }
+    @media (max-width: 620px) { .form-grid-2 { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <div id="site-header-mount"></div>
+
+  <main id="main-content">
+    <section class="section">
+      <div class="container form-wrap">
+        <h1 style="font-family:var(--font-display); font-size:2.2rem; margin:0 0 8px;">Submit News</h1>
+        <p style="color:var(--slate); margin:0 0 var(--space-5);">Have a tip, a story, or information the public should know? Send it to our editorial team — every submission is reviewed by a person before anything is published.</p>
+
+        <div class="form-note">
+          Submissions are never published automatically. Our editors review every story, and may edit, follow up with you, or decline it.
+        </div>
+
+        <form id="submit-news-form" novalidate>
+          <div class="form-grid-2">
+            <div class="form-row">
+              <label for="submitterName">Your Name *</label>
+              <input type="text" id="submitterName" name="submitterName" required maxlength="150" />
+            </div>
+            <div class="form-row">
+              <label for="email">Email Address *</label>
+              <input type="email" id="email" name="email" required maxlength="200" />
+            </div>
+          </div>
+
+          <div class="form-grid-2">
+            <div class="form-row">
+              <label for="phone">Phone Number (optional)</label>
+              <input type="tel" id="phone" name="phone" maxlength="30" />
+            </div>
+            <div class="form-row">
+              <label for="location">Location (optional)</label>
+              <input type="text" id="location" name="location" maxlength="150" />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <label for="title">News Title *</label>
+            <input type="text" id="title" name="title" required maxlength="200" />
+          </div>
+
+          <div class="form-row">
+            <label for="categoryId">Category *</label>
+            <select id="categoryId" name="categoryId" required>
+              <option value="">Select a category…</option>
+            </select>
+          </div>
+
+          <div class="form-row">
+            <label for="description">Short Description *</label>
+            <textarea id="description" name="description" rows="2" maxlength="500" required></textarea>
+          </div>
+
+          <div class="form-row">
+            <label for="fullStory">Full Story *</label>
+            <textarea id="fullStory" name="fullStory" rows="8" required></textarea>
+          </div>
+
+          <div class="form-row">
+            <label for="source">Source (optional)</label>
+            <input type="text" id="source" name="source" maxlength="200" placeholder="Where did this information come from?" />
+          </div>
+
+          <div class="form-grid-2">
+            <div class="form-row">
+              <label for="image">Image Upload (optional)</label>
+              <input type="file" id="image" name="image" accept="image/png,image/jpeg,image/webp" disabled />
+              <p class="hint">Uploads open once the media library is live — for now, mention image availability in your story text and our editors will follow up.</p>
+            </div>
+            <div class="form-row">
+              <label for="document">Document Upload (optional)</label>
+              <input type="file" id="document" name="document" disabled />
+              <p class="hint">Coming soon.</p>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <label for="additionalInfo">Additional Information (optional)</label>
+            <textarea id="additionalInfo" name="additionalInfo" rows="3" maxlength="500"></textarea>
+          </div>
+
+          <div class="form-row checkbox-row">
+            <input type="checkbox" id="consent" name="consent" required />
+            <label for="consent">I confirm I have the right to share this information and give SHEREBLOG NEWS permission to review and, if appropriate, publish it. *</label>
+          </div>
+
+          <button type="submit" class="btn btn-primary" id="submit-btn">Submit Story</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <div id="site-footer-mount"></div>
+
+  <script src="/js/utils.js"></script>
+  <script src="/js/api.js"></script>
+  <script src="/js/cards.js"></script>
+  <script src="/js/layout.js"></script>
+  <script src="/js/submit-news.js"></script>
+</body>
+</html>

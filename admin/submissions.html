@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>News Submissions — SHEREBLOG NEWS Admin</title>
+  <meta name="robots" content="noindex" />
+  <link rel="stylesheet" href="/admin/css/admin.css" />
+</head>
+<body>
+  <div class="admin-shell">
+    <aside class="admin-sidebar" id="admin-sidebar-mount"></aside>
+    <div class="admin-main">
+      <header class="admin-topbar" id="admin-topbar-mount"></header>
+      <div class="admin-content">
+
+        <div class="a-toolbar">
+          <select class="a-select" id="status-filter">
+            <option value="">All statuses</option>
+            <option value="pending" selected>Pending</option>
+            <option value="reviewed">Reviewed</option>
+            <option value="approved">Approved</option>
+            <option value="rejected">Rejected</option>
+            <option value="archived">Archived</option>
+          </select>
+        </div>
+
+        <div class="a-card">
+          <div class="a-table-wrap">
+            <table class="a-table">
+              <thead>
+                <tr>
+                  <th>Title</th>
+                  <th>Submitter</th>
+                  <th>Category</th>
+                  <th>Status</th>
+                  <th>Submitted</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody id="submissions-table-body">
+                <tr class="a-skeleton-row"><td colspan="6"><div class="a-skeleton"></div></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="a-pagination">
+          <span id="pagination-info"></span>
+          <button class="a-btn a-btn-ghost a-btn-sm" id="prev-page-btn">Previous</button>
+          <button class="a-btn a-btn-ghost a-btn-sm" id="next-page-btn">Next</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="a-modal-backdrop" id="detail-modal" style="display:none;">
+    <div class="a-modal" style="max-width:640px; max-height:85vh; overflow-y:auto;">
+      <h3 id="detail-title"></h3>
+      <p style="font-family:var(--a-mono); font-size:0.78rem; color:var(--a-slate); margin:-0.5rem 0 1rem;" id="detail-meta"></p>
+
+      <div style="font-size:0.85rem; margin-bottom:1rem;">
+        <div><strong>Description:</strong> <span id="detail-description"></span></div>
+      </div>
+      <div style="background:var(--a-bg); border-radius:8px; padding:1rem; font-size:0.88rem; line-height:1.6; max-height:220px; overflow-y:auto; margin-bottom:1rem; white-space:pre-wrap;" id="detail-fullstory"></div>
+
+      <div class="a-field">
+        <label class="a-label">Internal Notes</label>
+        <textarea class="a-textarea" id="detail-notes" rows="3"></textarea>
+      </div>
+
+      <div class="a-modal-actions" style="justify-content: space-between; flex-wrap: wrap;">
+        <div style="display:flex; gap:6px; flex-wrap:wrap;">
+          <button class="a-btn a-btn-ghost a-btn-sm" id="mark-reviewed-btn">Mark Reviewed</button>
+          <button class="a-btn a-btn-danger a-btn-sm" id="reject-btn">Reject</button>
+          <button class="a-btn a-btn-ghost a-btn-sm" id="archive-btn">Archive</button>
+        </div>
+        <div style="display:flex; gap:6px;">
+          <button class="a-btn a-btn-ghost" id="save-notes-btn">Save Notes</button>
+          <button class="a-btn a-btn-primary" id="convert-btn">Approve &amp; Convert to Draft</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="/admin/js/admin-api.js"></script>
+  <script src="/admin/js/admin-utils.js"></script>
+  <script src="/admin/js/auth-guard.js"></script>
+  <script src="/admin/js/admin-layout.js"></script>
+  <script src="/admin/js/submissions.js"></script>
+</body>
+</html>

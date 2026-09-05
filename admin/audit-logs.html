@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Audit Log — SHEREBLOG NEWS Admin</title>
+  <meta name="robots" content="noindex" />
+  <link rel="stylesheet" href="/admin/css/admin.css" />
+</head>
+<body>
+  <div class="admin-shell">
+    <aside class="admin-sidebar" id="admin-sidebar-mount"></aside>
+    <div class="admin-main">
+      <header class="admin-topbar" id="admin-topbar-mount"></header>
+      <div class="admin-content">
+
+        <div class="a-toolbar">
+          <select class="a-select" id="resource-filter">
+            <option value="">All resource types</option>
+            <option value="article">Articles</option>
+            <option value="category">Categories</option>
+            <option value="user">Users</option>
+            <option value="media">Media</option>
+            <option value="news_submission">Submissions</option>
+            <option value="newsletter_subscriber">Subscribers</option>
+            <option value="settings">Settings</option>
+          </select>
+        </div>
+
+        <div class="a-card">
+          <div class="a-table-wrap">
+            <table class="a-table">
+              <thead>
+                <tr>
+                  <th>When</th>
+                  <th>User</th>
+                  <th>Action</th>
+                  <th>Resource</th>
+                  <th>IP Address</th>
+                </tr>
+              </thead>
+              <tbody id="audit-table-body">
+                <tr class="a-skeleton-row"><td colspan="5"><div class="a-skeleton"></div></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="a-pagination">
+          <span id="pagination-info"></span>
+          <button class="a-btn a-btn-ghost a-btn-sm" id="prev-page-btn">Previous</button>
+          <button class="a-btn a-btn-ghost a-btn-sm" id="next-page-btn">Next</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <script src="/admin/js/admin-api.js"></script>
+  <script src="/admin/js/admin-utils.js"></script>
+  <script src="/admin/js/auth-guard.js"></script>
+  <script src="/admin/js/admin-layout.js"></script>
+  <script src="/admin/js/audit-logs.js"></script>
+</body>
+</html>

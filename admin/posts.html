@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Posts — SHEREBLOG NEWS Admin</title>
+  <meta name="robots" content="noindex" />
+  <link rel="stylesheet" href="/admin/css/admin.css" />
+</head>
+<body>
+  <div class="admin-shell">
+    <aside class="admin-sidebar" id="admin-sidebar-mount"></aside>
+    <div class="admin-main">
+      <header class="admin-topbar" id="admin-topbar-mount"></header>
+      <div class="admin-content">
+
+        <div class="a-toolbar">
+          <div class="a-search-input">
+            <input class="a-input" type="search" id="search-input" placeholder="Search posts by title..." />
+          </div>
+          <select class="a-select" id="status-filter">
+            <option value="">All statuses</option>
+            <option value="draft">Draft</option>
+            <option value="pending_review">Pending Review</option>
+            <option value="scheduled">Scheduled</option>
+            <option value="published">Published</option>
+            <option value="archived">Archived</option>
+            <option value="trash">Trash</option>
+          </select>
+          <select class="a-select" id="category-filter">
+            <option value="">All categories</option>
+          </select>
+          <div style="flex:1;"></div>
+          <button class="a-btn a-btn-ghost a-btn-sm" id="bulk-publish-btn" style="display:none;">Publish selected</button>
+          <button class="a-btn a-btn-danger a-btn-sm" id="bulk-trash-btn" style="display:none;">Trash selected</button>
+          <a href="/admin/post-editor.html" class="a-btn a-btn-primary">+ New Post</a>
+        </div>
+
+        <div class="a-card">
+          <div class="a-table-wrap">
+            <table class="a-table">
+              <thead>
+                <tr>
+                  <th class="a-table-checkbox"><input type="checkbox" id="select-all" /></th>
+                  <th>Title</th>
+                  <th>Category</th>
+                  <th>Author</th>
+                  <th>Status</th>
+                  <th>Published</th>
+                  <th>Updated</th>
+                  <th>Views</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody id="posts-table-body">
+                <tr class="a-skeleton-row"><td colspan="9"><div class="a-skeleton"></div></td></tr>
+                <tr class="a-skeleton-row"><td colspan="9"><div class="a-skeleton"></div></td></tr>
+                <tr class="a-skeleton-row"><td colspan="9"><div class="a-skeleton"></div></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="a-pagination">
+          <span id="pagination-info"></span>
+          <button class="a-btn a-btn-ghost a-btn-sm" id="prev-page-btn">Previous</button>
+          <button class="a-btn a-btn-ghost a-btn-sm" id="next-page-btn">Next</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="a-modal-backdrop" id="confirm-modal" style="display:none;">
+    <div class="a-modal">
+      <h3 id="confirm-modal-title">Are you sure?</h3>
+      <p id="confirm-modal-body"></p>
+      <div class="a-modal-actions">
+        <button class="a-btn a-btn-ghost" id="confirm-modal-cancel">Cancel</button>
+        <button class="a-btn a-btn-danger" id="confirm-modal-confirm">Confirm</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="/admin/js/admin-api.js"></script>
+  <script src="/admin/js/admin-utils.js"></script>
+  <script src="/admin/js/auth-guard.js"></script>
+  <script src="/admin/js/admin-layout.js"></script>
+  <script src="/admin/js/posts.js"></script>
+</body>
+</html>

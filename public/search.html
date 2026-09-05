@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Search — SHEREBLOG NEWS</title>
+  <meta name="robots" content="noindex" />
+  <link rel="stylesheet" href="/css/tokens.css" />
+  <link rel="stylesheet" href="/css/layout.css" />
+  <link rel="stylesheet" href="/css/cards.css" />
+  <style>
+    .search-bar {
+      display: flex;
+      gap: var(--space-2);
+      max-width: 640px;
+    }
+    .search-bar input {
+      flex: 1;
+      padding: 0.9rem 1.1rem;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--hairline);
+      font-size: 1rem;
+      background: var(--paper-raised);
+    }
+    .search-bar input:focus { border-color: var(--wire-red); }
+    .search-meta { color: var(--slate); font-size: 0.9rem; margin-top: var(--space-3); }
+  </style>
+</head>
+<body>
+  <div id="site-header-mount"></div>
+
+  <main id="main-content">
+    <section class="section" style="padding-bottom: var(--space-4);">
+      <div class="container">
+        <h1 style="font-family:var(--font-display); font-size:2.2rem; margin:0 0 16px;">Search SHEREBLOG NEWS</h1>
+        <form class="search-bar" id="search-form">
+          <label class="sr-only" for="search-input">Search articles</label>
+          <input type="search" id="search-input" placeholder="Search titles, topics, authors..." autocomplete="off" />
+          <button type="submit" class="btn btn-primary">Search</button>
+        </form>
+        <p class="search-meta" id="search-meta"></p>
+      </div>
+    </section>
+
+    <section class="section" style="padding-top:0;">
+      <div class="container">
+        <div class="news-grid" id="search-grid"></div>
+      </div>
+    </section>
+  </main>
+
+  <div id="site-footer-mount"></div>
+
+  <script src="/js/utils.js"></script>
+  <script src="/js/api.js"></script>
+  <script src="/js/cards.js"></script>
+  <script src="/js/layout.js"></script>
+  <script src="/js/search.js"></script>
+</body>
+</html>

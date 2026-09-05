@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Settings — SHEREBLOG NEWS Admin</title>
+  <meta name="robots" content="noindex" />
+  <link rel="stylesheet" href="/admin/css/admin.css" />
+  <style>
+    .settings-tabs {
+      display: flex;
+      gap: 4px;
+      margin-bottom: 1.2rem;
+      flex-wrap: wrap;
+    }
+
+    .settings-tabs button {
+      padding: 0.5rem 1rem;
+      border-radius: var(--a-radius-sm);
+      border: 1px solid var(--a-border);
+      background: #fff;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--a-slate);
+    }
+
+    .settings-tabs button.active {
+      background: var(--a-ink);
+      color: #fff;
+      border-color: var(--a-ink);
+    }
+
+    .settings-panel {
+      display: none;
+      max-width: 640px;
+    }
+
+    .settings-panel.active {
+      display: block;
+    }
+
+    .settings-grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="admin-shell">
+    <aside class="admin-sidebar" id="admin-sidebar-mount"></aside>
+    <div class="admin-main">
+      <header class="admin-topbar" id="admin-topbar-mount"></header>
+      <div class="admin-content">
+
+        <div class="settings-tabs" id="settings-tabs">
+          <button data-tab="general" class="active">General / Appearance</button>
+          <button data-tab="seo">SEO</button>
+          <button data-tab="social">Social</button>
+          <button data-tab="breaking_news">Breaking News</button>
+          <button data-tab="newsletter">Newsletter</button>
+          <button data-tab="publishing">Publishing</button>
+          <button data-tab="security">Security</button>
+          <button data-tab="comments">Comments</button>
+        </div>
+
+        <div class="a-card" style="padding:1.4rem;">
+
+          <div class="settings-panel active" id="panel-general">
+            <div class="a-field"><label class="a-label">Site Name</label><input class="a-input" id="site-name" /></div>
+            <div class="a-field"><label class="a-label">Site Description</label><textarea class="a-textarea"
+                id="site-description" rows="2"></textarea></div>
+            <div class="settings-grid-2">
+              <div class="a-field"><label class="a-label">Logo URL</label><input class="a-input" id="site-logo" /></div>
+              <div class="a-field"><label class="a-label">Favicon URL</label><input class="a-input" id="site-favicon" />
+              </div>
+            </div>
+            <div class="a-field"><label class="a-label">Contact Email</label><input class="a-input" type="email"
+                id="site-contact-email" /></div>
+            <div class="a-field"><label class="a-label">Footer Text</label><input class="a-input"
+                id="site-footer-text" /></div>
+            <button class="a-btn a-btn-primary save-btn" data-key="site">Save General Settings</button>
+          </div>
+
+          <div class="settings-panel" id="panel-seo">
+            <div class="a-field"><label class="a-label">Default SEO Title</label><input class="a-input"
+                id="seo-default-title" /></div>
+            <div class="a-field"><label class="a-label">Default Description</label><textarea class="a-textarea"
+                id="seo-default-description" rows="2"></textarea></div>
+            <div class="a-field"><label class="a-label">Default Keywords</label><input class="a-input"
+                id="seo-keywords" /></div>
+            <div class="a-field"><label class="a-label">Google Site Verification</label><input class="a-input"
+                id="seo-google-verification" /></div>
+            <p class="a-hint">Sitemap: <code id="sitemap-link"></code> · Robots.txt: <code id="robots-link"></code></p>
+            <button class="a-btn a-btn-primary save-btn" data-key="seo">Save SEO Settings</button>
+          </div>
+
+          <div class="settings-panel" id="panel-social">
+            <div class="settings-grid-2">
+              <div class="a-field"><label class="a-label">Facebook</label><input class="a-input" id="social-facebook" />
+              </div>
+              <div class="a-field"><label class="a-label">TikTok</label><input class="a-input" id="social-tiktok" />
+              </div>
+              <div class="a-field"><label class="a-label">WhatsApp</label><input class="a-input" id="social-whatsapp" />
+              </div>
+              <div class="a-field"><label class="a-label">X / Twitter</label><input class="a-input"
+                  id="social-twitter" /></div>
+              <div class="a-field"><label class="a-label">Instagram</label><input class="a-input"
+                  id="social-instagram" /></div>
+              <div class="a-field"><label class="a-label">YouTube</label><input class="a-input" id="social-youtube" />
+              </div>
+            </div>
+            <button class="a-btn a-btn-primary save-btn" data-key="social">Save Social Links</button>
+          </div>
+
+          <div class="settings-panel" id="panel-breaking_news">
+            <div class="a-field" style="display:flex; align-items:center; gap:8px;">
+              <input type="checkbox" id="bn-enabled" />
+              <label class="a-label" style="margin:0;">Enable breaking news bar</label>
+            </div>
+            <div class="a-field"><label class="a-label">Select Article (optional)</label><select class="a-select"
+                id="bn-article">
+                <option value="">— None —</option>
+              </select></div>
+            <div class="a-field"><label class="a-label">Custom Text (overrides article title if set)</label><input
+                class="a-input" id="bn-text" /></div>
+            <div class="a-field"><label class="a-label">Priority</label><input class="a-input" type="number"
+                id="bn-priority" min="0" /></div>
+            <button class="a-btn a-btn-primary save-btn" data-key="breaking_news">Save Breaking News</button>
+          </div>
+
+          <div class="settings-panel" id="panel-newsletter">
+            <div class="a-field" style="display:flex; align-items:center; gap:8px;">
+              <input type="checkbox" id="nl-enabled" />
+              <label class="a-label" style="margin:0;">Enable newsletter subscriptions</label>
+            </div>
+            <div class="a-field"><label class="a-label">Sender Name</label><input class="a-input" id="nl-sender-name" />
+            </div>
+            <div class="a-field"><label class="a-label">Sender Email</label><input class="a-input" type="email"
+                id="nl-sender-email" /></div>
+            <button class="a-btn a-btn-primary save-btn" data-key="newsletter">Save Newsletter Settings</button>
+          </div>
+
+          <div class="settings-panel" id="panel-publishing">
+            <div class="a-field"><label class="a-label">Default Article Status</label>
+              <select class="a-select" id="pub-default-status">
+                <option value="draft">Draft</option>
+                <option value="pending_review">Pending Review</option>
+              </select>
+            </div>
+            <div class="a-field"><label class="a-label">Default Category</label><select class="a-select"
+                id="pub-default-category">
+                <option value="">— None —</option>
+              </select></div>
+            <button class="a-btn a-btn-primary save-btn" data-key="publishing">Save Publishing Settings</button>
+          </div>
+
+          <div class="settings-panel" id="panel-security">
+            <div class="a-field"><label class="a-label">Login Attempt Limit</label><input class="a-input" type="number"
+                id="sec-attempt-limit" min="1" /></div>
+            <div class="a-field"><label class="a-label">Lockout Duration (minutes)</label><input class="a-input"
+                type="number" id="sec-lockout-minutes" min="1" /></div>
+            <p class="a-hint">Session timeout is controlled by JWT_EXPIRES_IN in the server environment.</p>
+            <button class="a-btn a-btn-primary save-btn" data-key="security">Save Security Settings</button>
+          </div>
+
+          <div class="settings-panel" id="panel-comments">
+            <div class="a-field" style="display:flex; align-items:center; gap:8px;">
+              <input type="checkbox" id="comments-enabled" />
+              <label class="a-label" style="margin:0;">Enable comments site-wide</label>
+            </div>
+            <p class="a-hint">When disabled, the comment form is hidden on every article and new submissions are
+              rejected. Existing comments and their moderation status are unaffected — this only controls whether people
+              can add new ones.</p>
+            <button class="a-btn a-btn-primary save-btn" data-key="comments">Save Comments Settings</button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="/admin/js/admin-api.js"></script>
+  <script src="/admin/js/admin-utils.js"></script>
+  <script src="/admin/js/auth-guard.js"></script>
+  <script src="/admin/js/admin-layout.js"></script>
+  <script src="/admin/js/settings.js"></script>
+</body>
+
+</html>

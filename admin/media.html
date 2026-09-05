@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Media Library — SHEREBLOG NEWS Admin</title>
+  <meta name="robots" content="noindex" />
+  <link rel="stylesheet" href="/admin/css/admin.css" />
+  <style>
+    .media-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 1rem; }
+    .media-tile { background: #fff; border: 1px solid var(--a-border); border-radius: var(--a-radius-md); overflow: hidden; cursor: pointer; }
+    .media-tile-thumb { aspect-ratio: 1; background: var(--a-bg); display: flex; align-items: center; justify-content: center; overflow: hidden; }
+    .media-tile-thumb img { width: 100%; height: 100%; object-fit: cover; }
+    .media-tile-doc { font-family: var(--a-mono); font-size: 0.7rem; color: var(--a-slate); text-align: center; padding: 0.5rem; }
+    .media-tile-name { font-size: 0.72rem; padding: 0.5rem; color: var(--a-slate); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .dropzone {
+      border: 2px dashed var(--a-border); border-radius: var(--a-radius-lg);
+      padding: 1.8rem; text-align: center; margin-bottom: 1.4rem; color: var(--a-slate); font-size: 0.9rem;
+      transition: border-color 0.15s ease, background 0.15s ease;
+    }
+    .dropzone.dragover { border-color: var(--a-red); background: #fdf3f2; }
+    .dropzone input[type=file] { display:none; }
+  </style>
+</head>
+<body>
+  <div class="admin-shell">
+    <aside class="admin-sidebar" id="admin-sidebar-mount"></aside>
+    <div class="admin-main">
+      <header class="admin-topbar" id="admin-topbar-mount"></header>
+      <div class="admin-content">
+
+        <div class="dropzone" id="dropzone">
+          <p style="margin:0 0 0.6rem;"><strong>Drag & drop</strong> a file here, or</p>
+          <button type="button" class="a-btn a-btn-primary" id="browse-btn">Choose File</button>
+          <input type="file" id="file-input" accept="image/jpeg,image/png,image/webp,application/pdf,.doc,.docx" />
+          <p style="margin:0.6rem 0 0; font-size:0.78rem;">JPG, PNG, WEBP, PDF, DOC, DOCX — up to 8MB</p>
+          <div id="upload-progress" style="display:none; margin-top:0.8rem; font-size:0.82rem; color:var(--a-red-dark);">Uploading…</div>
+        </div>
+
+        <div class="a-toolbar">
+          <div class="a-search-input"><input class="a-input" type="search" id="search-input" placeholder="Search by filename..." /></div>
+          <select class="a-select" id="type-filter">
+            <option value="">All types</option>
+            <option value="image">Images</option>
+            <option value="document">Documents</option>
+          </select>
+        </div>
+
+        <div class="media-grid" id="media-grid"></div>
+        <div class="a-pagination">
+          <span id="pagination-info"></span>
+          <button class="a-btn a-btn-ghost a-btn-sm" id="prev-page-btn">Previous</button>
+          <button class="a-btn a-btn-ghost a-btn-sm" id="next-page-btn">Next</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="a-modal-backdrop" id="media-modal" style="display:none;">
+    <div class="a-modal" style="max-width:420px;">
+      <div id="media-modal-preview" style="margin-bottom:1rem; border-radius:8px; overflow:hidden; background:var(--a-bg);"></div>
+      <div class="a-field">
+        <label class="a-label" for="media-url-field">URL</label>
+        <div style="display:flex; gap:6px;">
+          <input class="a-input" type="text" id="media-url-field" readonly />
+          <button type="button" class="a-btn a-btn-ghost a-btn-sm" id="copy-url-btn">Copy</button>
+        </div>
+      </div>
+      <div class="a-field">
+        <label class="a-label" for="media-alt-field">Alt text</label>
+        <input class="a-input" type="text" id="media-alt-field" />
+      </div>
+      <div class="a-field">
+        <label class="a-label" for="media-caption-field">Caption</label>
+        <input class="a-input" type="text" id="media-caption-field" />
+      </div>
+      <div class="a-modal-actions">
+        <button class="a-btn a-btn-danger" id="delete-media-btn">Delete</button>
+        <div style="flex:1;"></div>
+        <button class="a-btn a-btn-ghost" id="media-modal-close">Close</button>
+        <button class="a-btn a-btn-primary" id="save-media-btn">Save</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="/admin/js/admin-api.js"></script>
+  <script src="/admin/js/admin-utils.js"></script>
+  <script src="/admin/js/auth-guard.js"></script>
+  <script src="/admin/js/admin-layout.js"></script>
+  <script src="/admin/js/media.js"></script>
+</body>
+</html>
