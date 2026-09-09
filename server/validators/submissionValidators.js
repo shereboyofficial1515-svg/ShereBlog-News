@@ -4,21 +4,26 @@ const { validate } = require('./authValidators');
 const createSubmissionRules = [
   body('submitterName').isString().trim().isLength({ min: 2, max: 150 }).withMessage('Name is required'),
   body('email').isEmail().normalizeEmail().withMessage('A valid email is required'),
-  body('phone').optional({ nullable: true }).isString().trim().isLength({ max: 30 }),
+  // checkFalsy alongside nullable: the Submit News form sends `null`
+  // (not `undefined`) for every optional field the visitor leaves
+  // blank — without checkFalsy, that null can still reach isString()/
+  // isUUID() and fail validation instead of being treated as "not
+  // provided." (Same fix already applied to article/category validators.)
+  body('phone').optional({ nullable: true, checkFalsy: true }).isString().trim().isLength({ max: 30 }),
   body('title').isString().trim().isLength({ min: 3, max: 200 }).withMessage('Title is required'),
-  body('categoryId').optional({ nullable: true }).isUUID().withMessage('Invalid category'),
+  body('categoryId').optional({ nullable: true, checkFalsy: true }).isUUID().withMessage('Invalid category'),
   body('description').isString().trim().isLength({ min: 3, max: 500 }).withMessage('Description is required'),
   body('fullStory').isString().trim().isLength({ min: 10 }).withMessage('Full story is required'),
-  body('source').optional({ nullable: true }).isString().trim().isLength({ max: 200 }),
-  body('location').optional({ nullable: true }).isString().trim().isLength({ max: 150 }),
-  body('additionalInfo').optional({ nullable: true }).isString().trim().isLength({ max: 500 }),
+  body('source').optional({ nullable: true, checkFalsy: true }).isString().trim().isLength({ max: 200 }),
+  body('location').optional({ nullable: true, checkFalsy: true }).isString().trim().isLength({ max: 150 }),
+  body('additionalInfo').optional({ nullable: true, checkFalsy: true }).isString().trim().isLength({ max: 500 }),
   body('consentGiven').isBoolean().custom((v) => v === true).withMessage('You must confirm consent to share this information'),
   validate,
 ];
 
 const updateSubmissionRules = [
   body('status').optional().isIn(['pending', 'reviewed', 'approved', 'rejected', 'archived']),
-  body('internalNotes').optional({ nullable: true }).isString().trim().isLength({ max: 2000 }),
+  body('internalNotes').optional({ nullable: true, checkFalsy: true }).isString().trim().isLength({ max: 2000 }),
   validate,
 ];
 
