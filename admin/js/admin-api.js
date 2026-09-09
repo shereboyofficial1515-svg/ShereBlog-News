@@ -82,7 +82,7 @@
   const adminApi = {
     // Auth
     login: (email, password) => request('/auth/login', { method: 'POST', body: JSON.stringify({ email, password }) }, false),
-    logout: () => request('/auth/logout', { method: 'POST' }).catch(() => { }),
+    logout: () => request('/auth/logout', { method: 'POST' }).catch(() => {}),
     me: () => request('/auth/me'),
 
     // Dashboard
@@ -114,7 +114,7 @@
       fd.append('file', file);
       if (meta.altText) fd.append('altText', meta.altText);
       if (meta.caption) fd.append('caption', meta.caption);
-      const token = session.getAccessToken();
+      const token = getAccessToken();
       const res = await fetch(`${BASE_URL}/media`, {
         method: 'POST',
         headers: token ? { Authorization: `Bearer ${token}` } : {},
