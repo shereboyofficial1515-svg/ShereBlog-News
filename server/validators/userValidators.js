@@ -16,7 +16,7 @@ const updateUserRules = [
   body('fullName').optional().isString().trim().isLength({ min: 2, max: 150 }),
   body('role').optional().isIn(ROLE_NAMES),
   body('status').optional().isIn(['active', 'disabled']),
-  body('bio').optional({ nullable: true }).isString().trim().isLength({ max: 1000 }),
+  body('bio').optional({ nullable: true, checkFalsy: true }).isString().trim().isLength({ max: 1000 }),
   validate,
 ];
 
