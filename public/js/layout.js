@@ -25,7 +25,8 @@
       <header class="site-header">
         <div class="container masthead">
           <a href="/index.html" class="logo" aria-label="SHEREBLOG NEWS home" id="header-logo">
-            <span class="logo-shere">Shere</span><span class="logo-blog">blog</span><span class="logo-news">NEWS</span>
+            <span class="logo-text"><span class="logo-shere">Shere</span><span class="logo-blog">blog</span><span class="logo-news">NEWS</span></span>
+            <img class="logo-image" alt="SHEREBLOG NEWS" />
           </a>
           <div class="masthead-actions">
             <button class="icon-btn" id="search-toggle" aria-label="Search">
@@ -60,7 +61,10 @@
       <footer class="site-footer">
         <div class="container">
           <div class="footer-about" style="padding-top: var(--space-7);">
-            <span class="logo" style="font-size:1.4rem;" id="footer-logo"><span class="logo-shere">Shere</span><span class="logo-blog">blog</span><span class="logo-news">NEWS</span></span>
+            <span class="logo" style="font-size:1.4rem;" id="footer-logo">
+              <span class="logo-text"><span class="logo-shere">Shere</span><span class="logo-blog">blog</span><span class="logo-news">NEWS</span></span>
+              <img class="logo-image" alt="SHEREBLOG NEWS" />
+            </span>
             <p style="margin-top: var(--space-3);" id="footer-description">Independent digital news covering politics, business, entertainment, sports, technology and the stories that matter — reported clearly, published fast.</p>
             <div class="footer-socials">
               <a class="icon-btn" href="#" aria-label="Facebook" data-social="facebook"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.4h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0 0 22 12z"/></svg></a>
@@ -202,10 +206,6 @@
     }
   }
 
-  function logoImgHtml(logoUrl, siteName, fontSize) {
-    return `<img src="${escapeHtml(logoUrl)}" alt="${escapeHtml(siteName || 'SHEREBLOG NEWS')}" style="height:${fontSize}; width:auto; display:block;" />`;
-  }
-
   async function applyBranding() {
     try {
       const res = await fetch('/api/settings/branding');
@@ -226,16 +226,18 @@
         iconLink.href = branding.faviconUrl;
       }
 
-      // Logo: swap the stylized text wordmark for an <img> wherever a
-      // logo URL is configured. Left as the text wordmark otherwise —
-      // this is a progressive enhancement, not a required field.
+      // Logo: on laptop/desktop widths, swap the stylized text wordmark
+      // for the configured image (the CSS media query in layout.css does
+      // the actual swapping, based on the has-logo class added here).
+      // The mobile drawer's logo is intentionally left as plain text at
+      // all times — it's only ever shown on phone-width screens anyway,
+      // where the text name should never disappear (see layout.css).
       if (branding.logoUrl) {
-        const headerLogo = document.getElementById('header-logo');
-        if (headerLogo) headerLogo.innerHTML = logoImgHtml(branding.logoUrl, branding.siteName, '36px');
-        const drawerLogo = document.getElementById('drawer-logo');
-        if (drawerLogo) drawerLogo.innerHTML = logoImgHtml(branding.logoUrl, branding.siteName, '28px');
-        const footerLogo = document.getElementById('footer-logo');
-        if (footerLogo) footerLogo.innerHTML = logoImgHtml(branding.logoUrl, branding.siteName, '40px');
+        document.querySelectorAll('#header-logo .logo-image, #footer-logo .logo-image').forEach((img) => {
+          img.src = branding.logoUrl;
+          img.alt = branding.siteName || 'SHEREBLOG NEWS';
+        });
+        document.querySelectorAll('#header-logo, #footer-logo').forEach((el) => el.classList.add('has-logo'));
       }
 
       if (branding.description) {
