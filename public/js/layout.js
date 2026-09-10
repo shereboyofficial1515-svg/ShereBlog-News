@@ -24,7 +24,7 @@
       <div id="breaking-bar-mount"></div>
       <header class="site-header">
         <div class="container masthead">
-          <a href="/index.html" class="logo" aria-label="SHEREBLOG NEWS home">
+          <a href="/index.html" class="logo" aria-label="SHEREBLOG NEWS home" id="header-logo">
             <span class="logo-shere">Shere</span><span class="logo-blog">blog</span><span class="logo-news">NEWS</span>
           </a>
           <div class="masthead-actions">
@@ -45,7 +45,7 @@
         <div class="mobile-drawer-backdrop" id="mobile-drawer-backdrop"></div>
         <div class="mobile-drawer-panel">
           <div style="display:flex;justify-content:space-between;align-items:center;">
-            <span class="logo" style="font-size:1.2rem;"><span class="logo-shere">Shere</span><span class="logo-blog">blog</span></span>
+            <span class="logo" style="font-size:1.2rem;" id="drawer-logo"><span class="logo-shere">Shere</span><span class="logo-blog">blog</span></span>
             <button class="icon-btn" id="mobile-drawer-close" aria-label="Close menu">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
             </button>
@@ -60,12 +60,12 @@
       <footer class="site-footer">
         <div class="container">
           <div class="footer-about" style="padding-top: var(--space-7);">
-            <span class="logo" style="font-size:1.4rem;"><span class="logo-shere">Shere</span><span class="logo-blog">blog</span><span class="logo-news">NEWS</span></span>
-            <p style="margin-top: var(--space-3);">Independent digital news covering politics, business, entertainment, sports, technology and the stories that matter — reported clearly, published fast.</p>
+            <span class="logo" style="font-size:1.4rem;" id="footer-logo"><span class="logo-shere">Shere</span><span class="logo-blog">blog</span><span class="logo-news">NEWS</span></span>
+            <p style="margin-top: var(--space-3);" id="footer-description">Independent digital news covering politics, business, entertainment, sports, technology and the stories that matter — reported clearly, published fast.</p>
             <div class="footer-socials">
-              <a class="icon-btn" href="#" aria-label="Facebook"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.4h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0 0 22 12z"/></svg></a>
-              <a class="icon-btn" href="#" aria-label="TikTok"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M16.6 5.8a4.3 4.3 0 0 1-3.1-1.3v9.6a5.5 5.5 0 1 1-4.7-5.4v2.3a3.1 3.1 0 1 0 2.2 3v-13h2.4a4.3 4.3 0 0 0 3.2 3.7v1.1z"/></svg></a>
-              <a class="icon-btn" href="#" aria-label="WhatsApp"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.5 15.3L2 22l4.9-1.3A10 10 0 1 0 12 2zm5.6 14.2c-.2.6-1.4 1.2-1.9 1.2-.5 0-1.1.2-3.6-.8-3-1.2-4.9-4.2-5-4.4-.2-.2-1.2-1.6-1.2-3s.8-2.2 1-2.5c.2-.2.5-.3.7-.3h.6c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .6l-.5.6c-.1.2-.2.4 0 .6.2.4 1 1.5 2.1 2.4 1.4 1.2 1.7 1.3 1.9 1.2.2-.1.9-.8 1.1-1 .2-.3.4-.2.7-.1l1.9 1c.2.1.4.2.4.4 0 .2 0 .9-.2 1.5z"/></svg></a>
+              <a class="icon-btn" href="#" aria-label="Facebook" data-social="facebook"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.4h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0 0 22 12z"/></svg></a>
+              <a class="icon-btn" href="#" aria-label="TikTok" data-social="tiktok"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M16.6 5.8a4.3 4.3 0 0 1-3.1-1.3v9.6a5.5 5.5 0 1 1-4.7-5.4v2.3a3.1 3.1 0 1 0 2.2 3v-13h2.4a4.3 4.3 0 0 0 3.2 3.7v1.1z"/></svg></a>
+              <a class="icon-btn" href="#" aria-label="WhatsApp" data-social="whatsapp"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.5 15.3L2 22l4.9-1.3A10 10 0 1 0 12 2zm5.6 14.2c-.2.6-1.4 1.2-1.9 1.2-.5 0-1.1.2-3.6-.8-3-1.2-4.9-4.2-5-4.4-.2-.2-1.2-1.6-1.2-3s.8-2.2 1-2.5c.2-.2.5-.3.7-.3h.6c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .6l-.5.6c-.1.2-.2.4 0 .6.2.4 1 1.5 2.1 2.4 1.4 1.2 1.7 1.3 1.9 1.2.2-.1.9-.8 1.1-1 .2-.3.4-.2.7-.1l1.9 1c.2.1.4.2.4.4 0 .2 0 .9-.2 1.5z"/></svg></a>
             </div>
           </div>
           <div class="footer-grid">
@@ -202,6 +202,58 @@
     }
   }
 
+  function logoImgHtml(logoUrl, siteName, fontSize) {
+    return `<img src="${escapeHtml(logoUrl)}" alt="${escapeHtml(siteName || 'SHEREBLOG NEWS')}" style="height:${fontSize}; width:auto; display:block;" />`;
+  }
+
+  async function applyBranding() {
+    try {
+      const res = await fetch('/api/settings/branding');
+      if (!res.ok) return;
+      const body = await res.json();
+      const branding = body && body.data;
+      if (!branding) return;
+
+      // Favicon: create the <link> if the page doesn't have one yet, then
+      // point it at the configured URL.
+      if (branding.faviconUrl) {
+        let iconLink = document.querySelector('link[rel="icon"]');
+        if (!iconLink) {
+          iconLink = document.createElement('link');
+          iconLink.rel = 'icon';
+          document.head.appendChild(iconLink);
+        }
+        iconLink.href = branding.faviconUrl;
+      }
+
+      // Logo: swap the stylized text wordmark for an <img> wherever a
+      // logo URL is configured. Left as the text wordmark otherwise —
+      // this is a progressive enhancement, not a required field.
+      if (branding.logoUrl) {
+        const headerLogo = document.getElementById('header-logo');
+        if (headerLogo) headerLogo.innerHTML = logoImgHtml(branding.logoUrl, branding.siteName, '36px');
+        const drawerLogo = document.getElementById('drawer-logo');
+        if (drawerLogo) drawerLogo.innerHTML = logoImgHtml(branding.logoUrl, branding.siteName, '28px');
+        const footerLogo = document.getElementById('footer-logo');
+        if (footerLogo) footerLogo.innerHTML = logoImgHtml(branding.logoUrl, branding.siteName, '40px');
+      }
+
+      if (branding.description) {
+        const desc = document.getElementById('footer-description');
+        if (desc) desc.textContent = branding.description;
+      }
+
+      Object.entries(branding.social || {}).forEach(([platform, url]) => {
+        if (!url) return;
+        const link = document.querySelector(`[data-social="${platform}"]`);
+        if (link) link.href = url;
+      });
+    } catch (err) {
+      // Branding is a progressive enhancement — never break the page
+      // over it (e.g. if the settings endpoint is briefly unavailable).
+    }
+  }
+
   function mountLayout() {
     const headerMount = document.getElementById('site-header-mount');
     const footerMount = document.getElementById('site-footer-mount');
@@ -214,6 +266,7 @@
     wireSearchToggle();
     wireNewsletterForms();
     renderBreakingBar();
+    applyBranding();
   }
 
   window.SHEREBLOG = window.SHEREBLOG || {};
