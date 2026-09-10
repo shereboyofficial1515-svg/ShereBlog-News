@@ -49,6 +49,35 @@ const getPublicCommentsEnabled = asyncHandler(async (req, res) => {
 });
 
 /**
+ * GET /api/settings/branding
+ * Public. Exposes only the specific fields the public site needs to
+ * render its own branding (logo, favicon, footer blurb, social links)
+ * — never the full settings object, which also holds internal fields
+ * like security thresholds and newsletter sender credentials.
+ */
+const getPublicBranding = asyncHandler(async (req, res) => {
+  const { data: rows } = await supabaseAdmin.from('settings').select('key, value').in('key', ['site', 'social']);
+
+  const site = rows?.find((r) => r.key === 'site')?.value || {};
+  const social = rows?.find((r) => r.key === 'social')?.value || {};
+
+  res.status(200).json({
+    success: true,
+    data: {
+      siteName: site.name || null,
+      description: site.footer_text || site.description || null,
+      logoUrl: site.logo_url || null,
+      faviconUrl: site.favicon_url || null,
+      social: {
+        facebook: social.facebook || null,
+        tiktok: social.tiktok || null,
+        whatsapp: social.whatsapp || null,
+      },
+    },
+  });
+});
+
+/**
  * GET /api/admin/settings
  * Staff (admin/super_admin) — returns every settings key as one object.
  */
@@ -98,4 +127,4 @@ const updateSettings = asyncHandler(async (req, res) => {
   res.status(200).json({ success: true, message: 'Settings updated', data: { key: updated.key, value: updated.value } });
 });
 
-module.exports = { getPublicBreakingNews, getPublicCommentsEnabled, getAllSettings, updateSettings };
+module.exports = { getPublicBreakingNews, getPublicCommentsEnabled, getPublicBranding, getAllSettings, updateSettings };
