@@ -260,7 +260,19 @@ img { max-width: 100%; display: block; }
 @keyframes a-toast-in { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
 
 .a-modal-backdrop { position: fixed; inset: 0; background: rgba(16,24,40,0.5); z-index: 500; display: flex; align-items: center; justify-content: center; padding: 1rem; }
-.a-modal { background: #fff; border-radius: var(--a-radius-lg); max-width: 480px; width: 100%; padding: 1.6rem; box-shadow: 0 20px 60px rgba(16,24,40,0.3); }
+.a-modal {
+  background: #fff; border-radius: var(--a-radius-lg); max-width: 480px; width: 100%; padding: 1.6rem;
+  box-shadow: 0 20px 60px rgba(16,24,40,0.3);
+  /* Every modal in the admin dashboard shares this class. Without a
+     height cap and its own scroll, a modal whose content grows taller
+     than the viewport (e.g. a large image in the Media Library preview)
+     pushes its own action buttons off-screen with no way to reach them
+     — the backdrop is a fixed, centered flex box, so the page itself
+     can't scroll to compensate. Capping height and scrolling internally
+     guarantees the header and action buttons are always reachable. */
+  max-height: 88vh;
+  overflow-y: auto;
+}
 .a-modal h3 { margin: 0 0 0.6rem; font-size: 1.1rem; }
 .a-modal p { color: var(--a-slate); font-size: 0.88rem; margin: 0 0 1.2rem; }
 .a-modal-actions { display: flex; gap: 0.6rem; justify-content: flex-end; }
