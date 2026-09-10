@@ -94,7 +94,7 @@
     activeItem = items.find((i) => i.id === id);
     if (!activeItem) return;
     document.getElementById('media-modal-preview').innerHTML = activeItem.fileType === 'image'
-      ? `<img src="${utils.escapeHtml(activeItem.fileUrl)}" style="width:100%; display:block;" />`
+      ? `<img src="${utils.escapeHtml(activeItem.fileUrl)}" style="width:100%; max-height:45vh; object-fit:contain; display:block;" />`
       : `<div style="padding:2rem; text-align:center; font-family:var(--a-mono); color:var(--a-slate);">📄 ${utils.escapeHtml(activeItem.fileName)}</div>`;
     document.getElementById('media-url-field').value = activeItem.fileUrl;
     document.getElementById('media-alt-field').value = activeItem.altText || '';
