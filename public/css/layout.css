@@ -39,6 +39,22 @@
   margin-left: 6px;
   margin-top: 4px;
 }
+.logo .logo-image { display: none; width: auto; }
+#header-logo .logo-image { height: 36px; }
+#footer-logo .logo-image { height: 40px; }
+
+/* A custom logo image only replaces the "SHEREBLOG NEWS" text wordmark
+   on wider (laptop/desktop) screens. On phone-width screens the site
+   name always stays visible as text, regardless of whether a logo
+   image is configured — a small uploaded logo can be illegible at
+   mobile header sizes, and the text name is the fallback that always
+   works. This only applies where a logo has actually been set
+   (the has-logo class is only added once branding.logoUrl exists);
+   with no logo configured, the text wordmark shows everywhere as before. */
+@media (min-width: 861px) {
+  .logo.has-logo .logo-text { display: none; }
+  .logo.has-logo .logo-image { display: inline-block; }
+}
 
 .masthead-actions {
   display: flex;
